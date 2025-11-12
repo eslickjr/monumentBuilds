@@ -1,0 +1,11 @@
+{
+  "name": "monumentbuilds",
+  "version": "1.0.0",
+  "description": "A website that caters to helping local businesses build their brand.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Joshua Eslick",
+  "license": "ISC"
+}

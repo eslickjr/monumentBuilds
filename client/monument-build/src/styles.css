@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    /* background color: body or page backgrounds */
+    --background-color: #36454F;
+    --background-color-2: #324049;
+    --background-color-3: #425561;
+    --background-color-4: #29353D;
+    --background-color-5: #4A5F6D;
+    /* surface color: sections containers or contrast layers */
+    /* --primary-color: #655A7C; */
+    --surface-color: #03B5AA;
+    --surface-color-2: #02A196;
+    --surface-color-3: #03C9BC;
+    --surface-color-4: #028D83;
+    --surface-color-5: #027971;
+    /* primary color: main theme color like headings, buttons, brands */
+    --primary-color: #F2F4F3;
+    --primary-color-2: #FFFFFF;
+    --primary-color-3:#E9ECEB;
+    --primary-color-4: #DEE3E0;
+    --primary-color-5: #D3D9D6;
+    /* secondary color: secondary theme color like accents, highlights, CTAs, icons */
+    --secondary-color: #FFA400;
+    --secondary-color-2: #FFB01F;
+    --secondary-color-3: #F59F00;
+    --secondary-color-4: #FFB833;
+    --secondary-color-5: #E09200;
+    /* text or neutral color: text, outlines, borders */
+    --text-color: #CB793A;
+    --text-color-2: #D0864E;
+    --text-color-3: #C17133;
+    --text-color-4: #D4915E;
+    --text-color-5: #B1682F;
+
+    --font-family: "Open Sans", sans-serif;
+    --font-family-2: "Merriweather", serif;
+    --font-family-3: "Montserrat", sans-serif;
+    --font-family-4: "Playfair Display", serif;
+    --font-family-5: "Raleway", sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
