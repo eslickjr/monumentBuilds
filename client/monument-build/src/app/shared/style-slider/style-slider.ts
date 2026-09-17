@@ -32,9 +32,20 @@ export class StyleSlider {
           ticking = false;
         });
       };
-      this.updateBottom();
       window.addEventListener('scroll', onScroll, { passive: true });
       window.addEventListener('resize', onScroll, { passive: true });
+
+      // Measure only once layout is settled. Measuring in afterNextRender ran
+      // before the tall hero images had loaded, so the page was still collapsed,
+      // the footer sat near the top, and the slider got flung upward until the
+      // first scroll corrected it. Recompute after load + a couple of frames.
+      if (document.readyState === 'complete') {
+        this.updateBottom();
+      } else {
+        window.addEventListener('load', () => this.updateBottom(), { once: true });
+      }
+      setTimeout(() => this.updateBottom(), 300);
+      setTimeout(() => this.updateBottom(), 1200);
     });
   }
 
@@ -50,7 +61,10 @@ export class StyleSlider {
     // `raised` grows and lifts the slider so its bottom edge stays GAP_MARGIN
     // above the footer's top — parking it in the gap at the bottom of the page.
     const raised = window.innerHeight - footerTop + this.GAP_MARGIN;
-    this.bottom.set(Math.max(this.NORMAL_BOTTOM, raised));
+    // Cap how high it can ever go (a bit above the footer) so a premature or odd
+    // measurement can never fling the slider to the top of the screen.
+    const cap = footer.offsetHeight + this.GAP_MARGIN + 40;
+    this.bottom.set(Math.min(cap, Math.max(this.NORMAL_BOTTOM, raised)));
   }
 
   label(theme: ThemeName): string {

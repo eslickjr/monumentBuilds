@@ -68,6 +68,12 @@
                             <span class="project-cat">{{ p.category }}</span>
                             <h3 class="project-title">{{ p.title }}</h3>
                             <p class="project-blurb">{{ p.blurb }}</p>
+                            @if (p.url) {
+                                <a class="project-link" [href]="p.url" target="_blank" rel="noopener"
+                                   (click)="$event.stopPropagation()" (keydown.enter)="$event.stopPropagation()">
+                                    Visit the live site &#8599;
+                                </a>
+                            }
                         </div>
                     </article>
                 }

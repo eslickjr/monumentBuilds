@@ -19,7 +19,10 @@ export class Home {
       // Pin to the very top first so the glide is always top-down. This also
       // beats the router's scroll-position restoration, which could otherwise
       // leave us partway down and make the animation run bottom-up / jittery.
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      // NOTE: 'instant' (not 'auto') — 'auto' defers to the CSS
+      // scroll-behavior:smooth on <html>, which would smooth-scroll us up from
+      // whatever position restoration left us at (the "bottom to top" glitch).
+      window.scrollTo({ top: 0, behavior: 'instant' });
       this.waitForProjects(0);
     });
   }
@@ -34,7 +37,7 @@ export class Home {
     }
     // One more frame for layout to settle, still pinned at top, then glide.
     requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      window.scrollTo({ top: 0, behavior: 'instant' });
       this.cinematicScrollTo(target);
     });
   }
@@ -62,9 +65,9 @@ export class Home {
       if (!this.animating) return;
       if (start === null) start = now;
       const p = Math.min(1, (now - start) / duration);
-      // behavior:'auto' overrides the global CSS scroll-behavior:smooth so our
-      // own easing drives the motion (otherwise the two fight and it stutters).
-      window.scrollTo({ top: startY + distance * easeInOutCubic(p), behavior: 'auto' });
+      // 'instant' bypasses the global CSS scroll-behavior:smooth so our own
+      // easing drives the motion (otherwise the two fight and it stutters).
+      window.scrollTo({ top: startY + distance * easeInOutCubic(p), behavior: 'instant' });
       if (p < 1) {
         requestAnimationFrame(step);
       } else {

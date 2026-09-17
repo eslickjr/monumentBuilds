@@ -55,6 +55,20 @@
   </script>
 </head>
 <body>
+  <!-- Netlify Forms detection: this static form lets Netlify's build bot register
+       the "contact" form even though the real form is rendered by Angular at
+       runtime. The Angular form (contact page) POSTs to "/" with form-name=contact.
+       It stays hidden and is never shown to visitors. -->
+  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+    <input type="text" name="businessName" />
+    <input type="text" name="website" />
+    <input type="email" name="email" />
+    <input type="tel" name="phone" />
+    <input type="text" name="contractType" />
+    <textarea name="description"></textarea>
+    <input name="bot-field" />
+  </form>
+
   <app-root></app-root>
 </body>
 </html>
