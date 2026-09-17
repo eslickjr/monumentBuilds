@@ -41,12 +41,53 @@
     width: 100%;
 }
 
-#welcome-image {
+.welcome-image {
     width: 100%;
     height: auto;
     opacity: 0.2;
     object-fit: cover;
     transform: translateY(-30%);
+    display: none;
+}
+
+/* Show the hero image that matches the active theme (set on an ancestor by the
+   style slider). Each theme now has its own skyline. */
+:host-context([data-theme="cartoon"]) .welcome-image-cartoon,
+:host-context([data-theme="professional"]) .welcome-image-professional,
+:host-context([data-theme="futuristic"]) .welcome-image-futuristic,
+:host-context([data-theme="computer"]) .welcome-image-computer,
+:host-context([data-theme="1920s"]) .welcome-image-1920s {
+    display: block;
+}
+
+/* Richer skylines read well a little stronger than the faint cartoon backdrop. */
+:host-context([data-theme="futuristic"]) .welcome-image-futuristic {
+    opacity: 0.35;
+}
+:host-context([data-theme="computer"]) .welcome-image-computer {
+    opacity: 0.32;
+}
+:host-context([data-theme="1920s"]) .welcome-image-1920s {
+    opacity: 0.4;
+}
+/* Professional is a light theme with a dark dusk photo: 0.30 lets the skyline
+   read while keeping the navy headings sharp against the lighter sky band. */
+:host-context([data-theme="professional"]) .welcome-image-professional {
+    opacity: 0.7;
+}
+:host-context([data-theme="professional"]) #welcome-image-container {
+    background-color: black;
+}
+/* The darker hero band (0.8 dusk photo over grey) makes the default dark navy
+   heading + slate subtext unreadable — switch them to light with a soft shadow
+   so they stay crisp over the busy skyline. */
+:host-context([data-theme="professional"]) #welcome-header {
+    color: #FFFFFF;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+:host-context([data-theme="professional"]) #welcome-message {
+    color: #EAF0FA;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 #welcome-header {
@@ -271,6 +312,7 @@
     font-weight: 700;
     color: var(--primary-color);
     margin: 20px 0;
+    text-align: center;
 }
 
 #pricing-description {
@@ -553,4 +595,156 @@
 #home-twitter-link:hover .home-social-container .home-social-icon,
 #home-linkedin-link:hover .home-social-container .home-social-icon path {
     fill: white;
+}
+
+/* ===== Themeable icons (per-theme SVGs via CSS variables) ===== */
+.service-card-icon, .pricing-icon, .pricing-arrow {
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+.icon-scalable { background-image: var(--icon-scalable); }
+.icon-custom-solutions { background-image: var(--icon-custom-solutions); }
+.icon-responsive { background-image: var(--icon-responsive); }
+.icon-seo { background-image: var(--icon-seo); }
+.icon-content { background-image: var(--icon-content); }
+.icon-marketing { background-image: var(--icon-marketing); }
+.icon-backend { background-image: var(--icon-backend); }
+.icon-brain { background-image: var(--icon-brain); }
+.icon-arrow { background-image: var(--icon-arrow); }
+.icon-process-scope { background-image: var(--icon-process-scope); }
+.icon-process-launch { background-image: var(--icon-process-launch); }
+
+/* Futuristic: unify the icon containers (override cartoon's per-icon colors) into
+   a dark circle with a cyan glow-border, and normalize icon sizes. */
+:host-context([data-theme="futuristic"]) .service-card-icon-container,
+:host-context([data-theme="futuristic"]) #backend-icon-container,
+:host-context([data-theme="futuristic"]) #marketing-icon-container,
+:host-context([data-theme="futuristic"]) #custom-solutions-icon-container,
+:host-context([data-theme="futuristic"]) #responsive-icon-container,
+:host-context([data-theme="futuristic"]) #content-icon-container,
+:host-context([data-theme="futuristic"]) #scalable-icon-container,
+:host-context([data-theme="futuristic"]) #seo-icon-container {
+    background-color: var(--surface-color-3);
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0 0 20px rgba(52, 231, 228, 0.22), inset 0 0 12px rgba(52, 231, 228, 0.08);
+    padding: 28px;
+}
+:host-context([data-theme="futuristic"]) .service-card-icon,
+:host-context([data-theme="futuristic"]) #seo-icon,
+:host-context([data-theme="futuristic"]) #custom-solutions-icon,
+:host-context([data-theme="futuristic"]) #backend-icon {
+    width: 92px;
+    height: 92px;
+    margin: 0;
+}
+
+/* ===== Professional / Computer / 1920s icon containers ===== */
+:host-context([data-theme="professional"]) .service-card-icon-container,
+:host-context([data-theme="professional"]) #backend-icon-container,
+:host-context([data-theme="professional"]) #marketing-icon-container,
+:host-context([data-theme="professional"]) #custom-solutions-icon-container,
+:host-context([data-theme="professional"]) #responsive-icon-container,
+:host-context([data-theme="professional"]) #content-icon-container,
+:host-context([data-theme="professional"]) #scalable-icon-container,
+:host-context([data-theme="professional"]) #seo-icon-container {
+  background-color: var(--surface-color-4); border: 1px solid var(--primary-color-4); box-shadow: 0 6px 16px rgba(27,42,74,.08); padding: 28px;
+}
+:host-context([data-theme="professional"]) .service-card-icon,
+:host-context([data-theme="professional"]) #seo-icon,
+:host-context([data-theme="professional"]) #custom-solutions-icon,
+:host-context([data-theme="professional"]) #backend-icon {
+  width:92px;height:92px;margin:0;
+}
+:host-context([data-theme="computer"]) .service-card-icon-container,
+:host-context([data-theme="computer"]) #backend-icon-container,
+:host-context([data-theme="computer"]) #marketing-icon-container,
+:host-context([data-theme="computer"]) #custom-solutions-icon-container,
+:host-context([data-theme="computer"]) #responsive-icon-container,
+:host-context([data-theme="computer"]) #content-icon-container,
+:host-context([data-theme="computer"]) #scalable-icon-container,
+:host-context([data-theme="computer"]) #seo-icon-container {
+  background-color: var(--surface-color-3); border: 2px solid var(--secondary-color); box-shadow: inset 0 0 12px rgba(0,0,0,.45); padding: 26px;
+}
+:host-context([data-theme="computer"]) .service-card-icon,
+:host-context([data-theme="computer"]) #seo-icon,
+:host-context([data-theme="computer"]) #custom-solutions-icon,
+:host-context([data-theme="computer"]) #backend-icon {
+  width:96px;height:96px;margin:0;
+}
+/* Computer plan-row icons get the same dark gold-ring medallion; arrows stay bare. */
+:host-context([data-theme="computer"]) .pricing-icon-wrapper {
+  background-color: var(--surface-color-3); border: 2px solid var(--secondary-color);
+  box-shadow: inset 0 0 12px rgba(0,0,0,.45); border-radius: 50%; padding: 16px;
+}
+:host-context([data-theme="computer"]) .pricing-icon { width: 104px; height: 104px; }
+:host-context([data-theme="1920s"]) .service-card-icon-container,
+:host-context([data-theme="1920s"]) #backend-icon-container,
+:host-context([data-theme="1920s"]) #marketing-icon-container,
+:host-context([data-theme="1920s"]) #custom-solutions-icon-container,
+:host-context([data-theme="1920s"]) #responsive-icon-container,
+:host-context([data-theme="1920s"]) #content-icon-container,
+:host-context([data-theme="1920s"]) #scalable-icon-container,
+:host-context([data-theme="1920s"]) #seo-icon-container {
+  /* Cream "medallion" so the detailed color illustrations pop on the dark card. */
+  background-color: #F3E7CB; border: 3px solid var(--secondary-color); box-shadow: inset 0 0 0 4px #F3E7CB, inset 0 0 0 6px rgba(201,162,75,.55); padding: 24px;
+}
+:host-context([data-theme="1920s"]) .service-card-icon,
+:host-context([data-theme="1920s"]) #seo-icon,
+:host-context([data-theme="1920s"]) #custom-solutions-icon,
+:host-context([data-theme="1920s"]) #backend-icon {
+  width:96px;height:96px;margin:0;
+}
+/* Plan-row icons (brain / scope / launch) get the same cream medallion; arrows stay bare. */
+:host-context([data-theme="1920s"]) .pricing-icon-wrapper {
+  background-color: #F3E7CB; border: 3px solid var(--secondary-color);
+  box-shadow: inset 0 0 0 4px #F3E7CB, inset 0 0 0 6px rgba(201,162,75,.55);
+  border-radius: 50%; padding: 16px;
+}
+:host-context([data-theme="1920s"]) .pricing-icon { width: 104px; height: 104px; }
+
+/* ===== Professional home: soften the glare =====
+   The professional palette grounds are near-white (#F5F7FA .. #FFFFFF), so the
+   stacked home sections read as one blinding wall. Drop the section grounds to a
+   calm, slightly deeper blue-grey and let the (still-white) service cards float
+   on top for structure, so the page is easy on the eyes without losing the
+   clean corporate feel. */
+:host-context([data-theme="professional"]) #home { background-color: #E7ECF3; }
+:host-context([data-theme="professional"]) #services-overview { background-color: #E7ECF3; }
+:host-context([data-theme="professional"]) #pricing { background-color: #DEE5EF; }
+:host-context([data-theme="professional"]) #gallery { background-color: #D5DEEB; }
+/* White cards on the muted ground: give them a defined edge + soft shadow. */
+:host-context([data-theme="professional"]) .service-card:nth-child(odd),
+:host-context([data-theme="professional"]) .service-card:nth-child(even) {
+  background: linear-gradient(to bottom right, #FFFFFF, #EEF3FA);
+  box-shadow: 0 8px 20px rgba(22, 35, 63, 0.12);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    #welcome-header { width: 92%; font-size: 2.1em; }
+    #welcome-message { width: 90%; }
+    #services-overview { padding: 30px 0; }
+    #services-overview-title { font-size: 1.6em; text-align: center; width: 90%; }
+    #services-list { width: 92%; align-items: center; }
+    .service-card,
+    .service-card:nth-child(odd),
+    .service-card:nth-child(even) {
+        width: 100%;
+        box-sizing: border-box;
+        flex-direction: column;
+        align-self: center;
+        text-align: center;
+        padding: 22px 16px;
+        margin: 10px 0;
+    }
+    .service-card-info { width: 100%; }
+    #pricing-icon-container { width: auto; flex-direction: column; gap: 6px; }
+    .pricing-arrow { transform: rotate(90deg); width: 40px; height: 40px; }
+    #pricing-description { width: 90%; }
+    #gallery-container { width: 92%; box-sizing: border-box; }
+    #gallery-description, #gallery-subtitle { width: 90%; }
+    #gallery-monitor { width: 240px; }
+    #social-media-links { flex-wrap: wrap; gap: 10px; }
 }

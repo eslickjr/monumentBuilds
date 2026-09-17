@@ -1,0 +1,29 @@
+@if (!reveal.overlayOpen()) {
+<div id="style-slider" role="group" aria-label="Site style" [style.bottom.px]="bottom()">
+  <!--
+  <div class="ss-row1">
+    <span class="ss-kicker">Site style</span>
+    <span class="ss-current">{{ label(reveal.baseTheme()) }}</span>
+  </div>
+  -->
+  <p class="ss-help">
+    <strong class="ss-help-lead">Styled to fit your needs.</strong>
+  </p>
+  <p class="ss-subhelp">Swipe the slider to see this site in different themes.</p>
+  <input
+    class="ss-range"
+    type="range"
+    min="0"
+    max="1000"
+    step="1"
+    [value]="reveal.x() * 1000"
+    (input)="onInput($event)"
+    aria-label="Reveal the next site style"
+  />
+  <div class="ss-scale">
+    <span>{{ label(leftLabel) }}</span>
+    <span class="ss-arrow">{{ arrow }}</span>
+    <span>{{ label(rightLabel) }}</span>
+  </div>
+</div>
+}

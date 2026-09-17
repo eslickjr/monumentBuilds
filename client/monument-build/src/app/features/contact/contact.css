@@ -32,6 +32,7 @@
     color: var(--primary-color);
     margin-top: 20px;
     margin-bottom: 0;
+    text-align: center;
 }
 
 .contact-description {
@@ -47,6 +48,19 @@
 
 .contact-description .contact-link {
     color: var(--secondary-color-4);
+}
+
+:host-context([data-theme="professional"]) .contact-title {
+    color: #FFFFFF;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.55);
+}
+:host-context([data-theme="professional"]) .contact-description {
+    color: #EAF0FA;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+:host-context([data-theme="professional"]) .contact-description .contact-link {
+    color: #86a7e9;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
 }
 
 #contact-form-section {
@@ -74,8 +88,25 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.2;
-    /* filter: blur(5px); */
+    display: none;
+    filter: blur(2px);
 }
+
+/* Per-theme call-center backdrop — shows the image matching the active theme
+   (each reveal layer resolves its own via :host-context). Opacity tuned so the
+   form stays readable: brighter/lighter photos sit fainter, darker ones stronger. */
+:host-context([data-theme="cartoon"]) .cc-cartoon,
+:host-context([data-theme="futuristic"]) .cc-futuristic,
+:host-context([data-theme="professional"]) .cc-professional,
+:host-context([data-theme="computer"]) .cc-computer,
+:host-context([data-theme="1920s"]) .cc-1920s {
+    display: block;
+}
+:host-context([data-theme="futuristic"]) .cc-futuristic { opacity: 0.30; }
+:host-context([data-theme="professional"]) .cc-professional { opacity: 0.7; }
+:host-context([data-theme="computer"]) .cc-computer { opacity: 0.22; }
+:host-context([data-theme="1920s"]) .cc-1920s { opacity: 0.32; transform: scale(1.45) translateY(-15%); }
+:host-context([data-theme="professional"]) .contact-image-container {background-color: black;}
 
 .contact-link {
     color: var(--link-color);
@@ -109,13 +140,28 @@
     height: auto;
     overflow: hidden;
     border-radius: 50%;
+    box-sizing: border-box;
+    border: 5px solid var(--secondary-color);
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-#customer-service-image {
+.customer-service-image {
     width: 100%;
     height: 100%;
+    aspect-ratio: 1 / 1;
+    object-position: 60% center;
     object-fit: cover;
+    display: none;
+}
+
+/* Per-theme customer-support portrait — each reveal layer resolves its own
+   via :host-context, so only the image matching the active theme shows. */
+:host-context([data-theme="cartoon"]) .cs-cartoon,
+:host-context([data-theme="futuristic"]) .cs-futuristic,
+:host-context([data-theme="professional"]) .cs-professional,
+:host-context([data-theme="computer"]) .cs-computer,
+:host-context([data-theme="1920s"]) .cs-1920s {
+    display: block;
 }
 
 .input-wrapper {
@@ -126,10 +172,21 @@
 }
 
 .input-icon {
-    width: 24px;
-    height: auto;
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
     margin-right: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
+
+/* Per-theme form-field icons — each reveal layer resolves its own via the
+   --icon-* variables defined on [data-theme] in styles.css. */
+.icon-business { background-image: var(--icon-business); }
+.icon-website  { background-image: var(--icon-website); }
+.icon-email    { background-image: var(--icon-email); }
+.icon-phone    { background-image: var(--icon-phone); }
 
 .input-container, .textarea {
     position: relative;
@@ -249,4 +306,41 @@
     background-color: var(--secondary-color-4);
     color: var(--primary-color);
     border-color: var(--primary-color);
+}
+
+/* Professional: the default (primary bg + secondary-4 text) resolves to dark
+   navy on muted grey — too dark and low-contrast. Use the theme's blue CTA. */
+:host-context([data-theme="professional"]) .form-button {
+    background-color: var(--secondary-color);
+    color: #FFFFFF;
+    border-color: var(--secondary-color);
+}
+:host-context([data-theme="professional"]) .form-button:hover {
+    background-color: var(--secondary-color-5);
+    color: #FFFFFF;
+    border-color: var(--secondary-color-5);
+}
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .contact-description { width: 90%; }
+    .contact-form { width: 92%; padding: 20px; box-sizing: border-box; }
+    .input-wrapper { width: 100%; }
+    .input-container { flex: 1; }
+    .form-input { width: 100%; box-sizing: border-box; }
+    .textarea { width: 100%; }
+    .form-textarea { width: 100%; box-sizing: border-box; }
+    .radios-wrapper { padding-left: 0; }
+    .radio-container { flex-wrap: wrap; }
+}
+
+/* The support photo floats in the form's top-right corner only on large screens.
+   Below ~1366px (tablets, iPad Pro, smaller laptops) the form narrows and the
+   floating image overlaps the fields, so stack it centered above the form. */
+@media (max-width: 1366px) {
+    #customer-service-image-container {
+        position: static;
+        width: 42%;
+        max-width: 240px;
+        margin: 0 auto 18px;
+    }
 }

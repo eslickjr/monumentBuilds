@@ -1,3 +1,21 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<!-- Live, interactive layer: the whole site renders here in the base theme. -->
+<div class="reveal-base" [attr.data-theme]="reveal.baseTheme()" #baseLayer>
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</div>
+
+<!-- Click-through clone of the site in the incoming theme, clipped at the seam. -->
+<div class="reveal-ghost" [style.clip-path]="reveal.clipPath()" aria-hidden="true">
+  <div
+    class="reveal-ghost-inner"
+    #ghostInner
+    [attr.data-theme]="reveal.incomingTheme()"
+    [style.width.px]="baseWidth()"
+    [style.transform]="ghostTransform()"
+  ></div>
+</div>
+
+<div class="reveal-seam" [style.left.%]="reveal.x() * 100" [style.opacity]="reveal.seamOpacity()"></div>
+
+<app-style-slider></app-style-slider>

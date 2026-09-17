@@ -1,12 +1,24 @@
 <nav id="navbar">
-    <div id="navbar-logo"class="logo">
-        <a id="navbar-logo-link" href="/"><img src="assets/logo.png" alt="Monument Builds Logo" style="height:40px;">Monument Builds</a>
+    <div id="navbar-logo" class="logo">
+        <a id="navbar-logo-link" routerLink="/" aria-label="Monument Builds — home">
+            <svg class="mb-mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <g fill="none" stroke="#C9A24B" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="34,24 14,50 34,76"/>
+                    <polyline points="66,24 86,50 66,76"/>
+                </g>
+                <line x1="60" y1="20" x2="40" y2="80" stroke="#F4EEE0" stroke-width="8" stroke-linecap="round"/>
+                <rect x="24" y="86" width="52" height="7" rx="3.5" fill="#C9A24B"/>
+            </svg>
+            <span class="mb-word">
+                <span class="mb-w1">MONUMENT</span>
+                <span class="mb-w2">BUILDS</span>
+            </span>
+        </a>
     </div>
     <ul id="navbar-list">
-        <li class="nav-item"><a class="nav-item-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-item-link" href="/services">Services</a></li>
-        <li class="nav-item"><a class="nav-item-link" href="/gallery">Gallery</a></li>
-        <li class="nav-item"><a class="nav-item-link" href="/contact">Contact</a></li>
+        <li class="nav-item"><a class="nav-item-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a></li>
+        <li class="nav-item"><a class="nav-item-link" routerLink="/services" routerLinkActive="active">Services</a></li>
+        <li class="nav-item"><a class="nav-item-link" routerLink="/gallery" routerLinkActive="active">Gallery</a></li>
+        <li class="nav-item"><a class="nav-item-link" routerLink="/contact" routerLinkActive="active">Contact</a></li>
     </ul>
 </nav>
-    

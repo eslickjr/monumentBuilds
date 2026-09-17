@@ -1,31 +1,36 @@
-/* You can add global styles to this file, and also import other style files */
-:root {
-    /* background color: body or page backgrounds */
+/* Global styles + theming.
+   Themes are selected via a data-theme attribute on <html> (set by ThemeService).
+   The whole site is driven by these CSS variables, so a theme is just a swap of values.
+   Cartoon is the default (also applied when no data-theme is present). */
+
+/* ---------- CARTOON (current look — default) ---------- */
+:root,
+[data-theme="cartoon"] {
+    /* background: body/page backgrounds */
     --background-color: #36454F;
     --background-color-2: #324049;
     --background-color-3: #425561;
     --background-color-4: #29353D;
     --background-color-5: #4A5F6D;
-    /* surface color: sections containers or contrast layers */
-    /* --primary-color: #655A7C; */
+    /* surface: sections, containers, nav/footer, cards */
     --surface-color: #03B5AA;
     --surface-color-2: #02A196;
     --surface-color-3: #03C9BC;
     --surface-color-4: #028D83;
     --surface-color-5: #027971;
-    /* primary color: main theme color like headings, buttons, brands */
+    /* primary: headings, logo, light lines/borders */
     --primary-color: #F2F4F3;
     --primary-color-2: #FFFFFF;
-    --primary-color-3:#E9ECEB;
+    --primary-color-3: #E9ECEB;
     --primary-color-4: #DEE3E0;
     --primary-color-5: #D3D9D6;
-    /* secondary color: secondary theme color like accents, highlights, CTAs, icons */
+    /* secondary: accents, links, CTAs, and body text (via -4) */
     --secondary-color: #FFA400;
     --secondary-color-2: #FFB01F;
     --secondary-color-3: #F59F00;
     --secondary-color-4: #FFB833;
     --secondary-color-5: #E09200;
-    /* text or neutral color: text, outlines, borders */
+    /* text/neutral: borders, secondary text */
     --text-color: #CB793A;
     --text-color-2: #D0864E;
     --text-color-3: #C17133;
@@ -39,14 +44,242 @@
     --font-family-5: "Raleway", sans-serif;
 }
 
+/* ---------- FUTURISTIC (dark neon) ---------- */
+[data-theme="futuristic"] {
+    --background-color: #05070E;
+    --background-color-2: #070B16;
+    --background-color-3: #0B1220;
+    --background-color-4: #04060C;
+    --background-color-5: #0E1830;
+    --surface-color: #0E1A2E;
+    --surface-color-2: #0B1524;
+    --surface-color-3: #132441;
+    --surface-color-4: #0A1220;
+    --surface-color-5: #1A2F52;
+    --primary-color: #EAF2FF;
+    --primary-color-2: #FFFFFF;
+    --primary-color-3: #CDD8F0;
+    --primary-color-4: #33507A;
+    --primary-color-5: #24405F;
+    --secondary-color: #34E7E4;
+    --secondary-color-2: #5FF0EE;
+    --secondary-color-3: #22C9C7;
+    --secondary-color-4: #A9BCE0;
+    --secondary-color-5: #7FE3E1;
+    --text-color: #34E7E4;
+    --text-color-2: #5FF0EE;
+    --text-color-3: #1D6B74;
+    --text-color-4: #2AA7B0;
+    --text-color-5: #124A50;
+
+    /* Body/subtext fonts inherit the cartoon set so paragraphs wrap identically
+       and the split-reveal stays aligned. Only the heading/display fonts differ
+       per theme (that's where most font personality lives, with minimal drift). */
+    --font-family-2: "Space Grotesk", sans-serif;
+    --font-family-4: "Orbitron", sans-serif;
+}
+
+/* ---------- PROFESSIONAL (light corporate) ---------- */
+[data-theme="professional"] {
+    --background-color: #F5F7FA;
+    --background-color-2: #EEF2F7;
+    --background-color-3: #FFFFFF;
+    --background-color-4: #E9EEF5;
+    --background-color-5: #DDE4EE;
+    --surface-color: #FFFFFF;
+    --surface-color-2: #F6F9FC;
+    --surface-color-3: #FFFFFF;
+    --surface-color-4: #EEF3FA;
+    --surface-color-5: #E4ECF6;
+    --primary-color: #16233F;
+    --primary-color-2: #0F1830;
+    --primary-color-3: #22335A;
+    --primary-color-4: #DBE2EE;
+    --primary-color-5: #CDD6E6;
+    --secondary-color: #2E6BE6;
+    --secondary-color-2: #4D84F0;
+    --secondary-color-3: #2357C9;
+    --secondary-color-4: #4A5A76;
+    --secondary-color-5: #1F4FB0;
+    --text-color: #33415C;
+    --text-color-2: #46567A;
+    --text-color-3: #27334D;
+    --text-color-4: #5C6B86;
+    --text-color-5: #1C2942;
+
+    /* Distinct heading/display font; body/subtext inherit cartoon for alignment. */
+    --font-family-2: "Playfair Display", serif;
+    --font-family-4: "Playfair Display", serif;
+}
+
+/* ---------- COMPUTER (circuit board / chip city — charcoal + gold + PCB green) ---------- */
+:root[data-theme="computer"],
+[data-theme="computer"] {
+    --background-color: #0B0E0C;
+    --background-color-2: #0E1210;
+    --background-color-3: #141A15;
+    --background-color-4: #070A08;
+    --background-color-5: #1A221B;
+    --surface-color: #141A12;
+    --surface-color-2: #0F150F;
+    --surface-color-3: #1D271A;
+    --surface-color-4: #0C110C;
+    --surface-color-5: #26331F;
+    --primary-color: #EAE6D3;
+    --primary-color-2: #FFFFFF;
+    --primary-color-3: #D6D2BC;
+    --primary-color-4: #3E4636;
+    --primary-color-5: #2C3227;
+    --secondary-color: #E3B341;
+    --secondary-color-2: #F2C860;
+    --secondary-color-3: #C6982E;
+    --secondary-color-4: #C7CAB0;
+    --secondary-color-5: #D9A82C;
+    --text-color: #8FA05E;
+    --text-color-2: #A9BC72;
+    --text-color-3: #6E7D45;
+    --text-color-4: #B7C089;
+    --text-color-5: #586A34;
+
+    /* Body/subtext inherit cartoon for alignment; distinct heading/display font. */
+    --font-family-2: "JetBrains Mono", monospace;
+    --font-family-4: "JetBrains Mono", monospace;
+}
+
+/* ---------- 1920s (art deco — espresso + gold + cream) ---------- */
+:root[data-theme="1920s"],
+[data-theme="1920s"] {
+    --background-color: #17120C;
+    --background-color-2: #1F1810;
+    --background-color-3: #281F14;
+    --background-color-4: #120E09;
+    --background-color-5: #2F2417;
+    --surface-color: #241B11;
+    --surface-color-2: #1D160E;
+    --surface-color-3: #2E2416;
+    --surface-color-4: #181109;
+    --surface-color-5: #3A2C1A;
+    --primary-color: #F3E8CE;
+    --primary-color-2: #FFF9EC;
+    --primary-color-3: #E7D8B4;
+    --primary-color-4: #4B3B23;
+    --primary-color-5: #3A2D1A;
+    --secondary-color: #C9A24B;
+    --secondary-color-2: #DCB863;
+    --secondary-color-3: #A9852F;
+    --secondary-color-4: #CDB88C;
+    --secondary-color-5: #B8912F;
+    --text-color: #9A824C;
+    --text-color-2: #B39A5E;
+    --text-color-3: #7C673A;
+    --text-color-4: #C2AD82;
+    --text-color-5: #5F4E2C;
+
+    --font-family-2: "Poiret One", sans-serif;
+    --font-family-4: "Cinzel", serif;
+}
+
+/* smooth the color change when the theme flips */
+:root { --theme-transition: background-color .25s ease, color .25s ease, border-color .25s ease, fill .25s ease; }
+
+html { scroll-behavior: smooth; }
+
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family);
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background-color: var(--background-color);
 }
 
 main {
     flex: 1;
 }
+
+/* Gap for the fixed style slider to rest over at the bottom of the page, applied
+   to main's last section so that section's own background fills the gap. Needs
+   !important because each page's last section is targeted by an #id rule with a
+   `padding` shorthand (e.g. #gallery { padding: 40px 0 }) — an id outranks
+   `main > :last-child`, and the shorthand resets padding-bottom to 0. */
+main > :last-child { padding-bottom: 160px !important; }
+
+/* ---------- Style-slider reveal layers ----------
+   The whole app renders inside .reveal-base (the live, interactive layer).
+   .reveal-ghost is a themed, click-through clone clipped at the slider seam.
+   Ghost sits above all app content (incl. navbar z-index:1000) so it splits too. */
+.reveal-base {
+    position: relative;
+    z-index: 0;
+    /* Re-resolve inherited font from this layer's own theme (not from <body>),
+       so text that doesn't set font-family explicitly restyles live while sliding. */
+    font-family: var(--font-family);
+    /* This layer owns the committed-theme background (it's no longer on <html>). */
+    background-color: var(--background-color);
+}
+.reveal-ghost {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: 9990;
+    pointer-events: none; /* clicks/keys pass through to the live base layer */
+}
+.reveal-ghost-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+    /* Incoming layer resolves its own theme font for inherited-font elements. */
+    font-family: var(--font-family);
+}
+.reveal-seam {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    z-index: 9995;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+.reveal-seam::before {
+    content: "";
+    position: absolute;
+    inset: 0 -1px;
+    width: 2px;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root { --theme-transition: none; }
+}
+
+/* ===== Ghost-clone form field: mirrored focus + fake caret =====
+   The ghost reveal layer is an inert clone (pointer-events:none) that can't take
+   real focus, so app.ts adds these markers to the clone matching the live field.
+   These rules are global (not component-scoped) because the caret span is created
+   in script and has no component _ngcontent attribute. */
+.form-input.mb-ghost-focused + .input-placeholder,
+.form-textarea.mb-ghost-focused + .textarea-placeholder {
+    transform: translate(-10px, -50%) scale(0.8);
+    top: 0;
+}
+.mb-ghost-caret {
+    position: absolute;
+    width: 2px;
+    border-radius: 1px;
+    pointer-events: none;
+    animation: mb-caret-blink 1.06s steps(1, end) infinite;
+}
+@keyframes mb-caret-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+
+/* ===== Per-theme section icons ===== */
+:root,
+[data-theme="cartoon"] { --icon-scalable: url("/icons/scalable.svg"); --icon-custom-solutions: url("/icons/custom-solutions.svg"); --icon-responsive: url("/icons/responsive.svg"); --icon-seo: url("/icons/seo.svg"); --icon-content: url("/icons/content.svg"); --icon-marketing: url("/icons/marketing.svg"); --icon-backend: url("/icons/backend.svg"); --icon-brain: url("/icons/brain.svg"); --icon-arrow: url("/icons/arrow.svg"); --icon-process-scope: url("/icons/process-scope.svg"); --icon-process-launch: url("/icons/process-launch.svg"); --icon-business: url("/icons/business.svg"); --icon-website: url("/icons/website.svg"); --icon-email: url("/icons/email.svg"); --icon-phone: url("/icons/phone.svg"); }
+[data-theme="futuristic"] { --icon-scalable: url("/icons/futuristic/scalable.svg"); --icon-custom-solutions: url("/icons/futuristic/custom-solutions.svg"); --icon-responsive: url("/icons/futuristic/responsive.svg"); --icon-seo: url("/icons/futuristic/seo.svg"); --icon-content: url("/icons/futuristic/content.svg"); --icon-marketing: url("/icons/futuristic/marketing.svg"); --icon-backend: url("/icons/futuristic/backend.svg"); --icon-brain: url("/icons/futuristic/brain.svg"); --icon-arrow: url("/icons/futuristic/arrow.svg"); --icon-process-scope: url("/icons/futuristic/process-scope.svg"); --icon-process-launch: url("/icons/futuristic/process-launch.svg"); --icon-business: url("/icons/futuristic/business.svg"); --icon-website: url("/icons/futuristic/website.svg"); --icon-email: url("/icons/futuristic/email.svg"); --icon-phone: url("/icons/futuristic/phone.svg"); }
+[data-theme="professional"] { --icon-scalable: url("/icons/professional/scalable.svg"); --icon-custom-solutions: url("/icons/professional/custom-solutions.svg"); --icon-responsive: url("/icons/professional/responsive.svg"); --icon-seo: url("/icons/professional/seo.svg"); --icon-content: url("/icons/professional/content.svg"); --icon-marketing: url("/icons/professional/marketing.svg"); --icon-backend: url("/icons/professional/backend.svg"); --icon-brain: url("/icons/professional/brain.svg"); --icon-arrow: url("/icons/professional/arrow.svg"); --icon-process-scope: url("/icons/professional/process-scope.svg"); --icon-process-launch: url("/icons/professional/process-launch.svg"); --icon-business: url("/icons/professional/business.svg"); --icon-website: url("/icons/professional/website.svg"); --icon-email: url("/icons/professional/email.svg"); --icon-phone: url("/icons/professional/phone.svg"); }
+[data-theme="computer"] { --icon-scalable: url("/icons/computer/scalable.svg"); --icon-custom-solutions: url("/icons/computer/custom-solutions.svg"); --icon-responsive: url("/icons/computer/responsive.svg"); --icon-seo: url("/icons/computer/seo.svg"); --icon-content: url("/icons/computer/content.svg"); --icon-marketing: url("/icons/computer/marketing.svg"); --icon-backend: url("/icons/computer/backend.svg"); --icon-brain: url("/icons/computer/brain.svg"); --icon-arrow: url("/icons/computer/arrow.svg"); --icon-process-scope: url("/icons/computer/process-scope.svg"); --icon-process-launch: url("/icons/computer/process-launch.svg"); --icon-business: url("/icons/computer/business.svg"); --icon-website: url("/icons/computer/website.svg"); --icon-email: url("/icons/computer/email.svg"); --icon-phone: url("/icons/computer/phone.svg"); }
+[data-theme="1920s"] { --icon-scalable: url("/icons/1920s/scalable.svg"); --icon-custom-solutions: url("/icons/1920s/custom-solutions.svg"); --icon-responsive: url("/icons/1920s/responsive.svg"); --icon-seo: url("/icons/1920s/seo.svg"); --icon-content: url("/icons/1920s/content.svg"); --icon-marketing: url("/icons/1920s/marketing.svg"); --icon-backend: url("/icons/1920s/backend.svg"); --icon-brain: url("/icons/1920s/brain.svg"); --icon-arrow: url("/icons/1920s/arrow.svg"); --icon-process-scope: url("/icons/1920s/process-scope.svg"); --icon-process-launch: url("/icons/1920s/process-launch.svg"); --icon-business: url("/icons/1920s/business.svg"); --icon-website: url("/icons/1920s/website.svg"); --icon-email: url("/icons/1920s/email.svg"); --icon-phone: url("/icons/1920s/phone.svg"); }

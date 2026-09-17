@@ -1,20 +1,322 @@
 <main id="services-page">
     <section id="services-introduction">
-        <div id="services-image-container">
-            <img id="services-image" src="/cartoon-city-skyline.png" alt="City Skyline Background">
+        <div class="svc-hero-inner">
+            <div class="svc-hero-text">
+                <p class="svc-hero-eyebrow">Services &amp; Pricing</p>
+                <h1 id="services-header">What We Offer</h1>
+                <p id="services-message">Your vision. Our expertise. Crafted with purpose — from the first pixel to launch and beyond, priced in plain sight.</p>
+                <a class="svc-cta hero-cta" routerLink="/contact">Start a project</a>
+            </div>
+            <div class="svc-hero-visual" aria-hidden="true"></div>
         </div>
-        <h1 id="services-header">What We Offer</h1>
-        <p id="services-message">Your Vision. Our Expertise. Crafted with Purpose.</p>
     </section>
-    <section id="mobile-responsive-service">
-        
+
+    <!-- ===== Included in every build ===== -->
+    <section id="mobile-responsive-service" class="svc-section">
+        <div class="svc-inner">
+            <p class="svc-eyebrow">Included in every site</p>
+            <h2 class="svc-title">Built right from the start</h2>
+            <p class="svc-sub">Every Monument Builds site ships with these as standard — no upsell, no add-on fees.</p>
+
+            <div class="feature-grid three">
+                <article class="feature-card">
+                    <h3 class="feature-title">Mobile Responsive Design</h3>
+                    <p class="feature-desc">Layouts and functionality adapt cleanly to phones and tablets, so your site looks and works great on any screen.</p>
+                    <ul class="check-list">
+                        <li>Flexible, fluid layouts (no fixed-width breakage)</li>
+                        <li>Images scale to the screen (max-width: 100%)</li>
+                        <li>Touch targets sized for fingers, not cursors</li>
+                    </ul>
+                </article>
+
+                <article class="feature-card">
+                    <h3 class="feature-title">SEO Structure</h3>
+                    <p class="feature-desc">Search-friendly foundations baked into every page so you're discoverable from day one.</p>
+                    <ul class="check-list">
+                        <li>Keyword-rich title tags &amp; meta descriptions per page</li>
+                        <li>H1 topic / H2 subtopic heading structure</li>
+                        <li>Clean, hyphenated URL routes</li>
+                        <li>Descriptive alt text on images</li>
+                        <li>Sitemaps &amp; structured data</li>
+                        <li>Google Business Profile, Search Console &amp; Analytics</li>
+                    </ul>
+                </article>
+
+                <article class="feature-card">
+                    <h3 class="feature-title">Performance Optimization</h3>
+                    <p class="feature-desc">Fast-loading pages that keep visitors — and search engines — happy.</p>
+                    <ul class="check-list">
+                        <li>Compressed images in modern formats (WebP / AVIF)</li>
+                        <li>Lazy loading &amp; code splitting</li>
+                        <li>Minified JS &amp; CSS via production builds</li>
+                        <li>Served over a CDN</li>
+                        <li>Async / deferred third-party scripts</li>
+                        <li>Audited with Lighthouse &amp; PageSpeed Insights</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
     </section>
-    <section id="seo-service"></section>
-    <section id="website-building-service"></section>
-    <section id="maintenance-service"></section>
-    <section id="database-service"></section>
-    <section id="content-management-service"></section>
-    <section id="marketing-service"></section>
-    <section id="email-service"></section>
-    <section id="ecommerce-service"></section>
+
+    <!-- ===== Website Building ===== -->
+    <section id="website-building-service" class="svc-section alt">
+        <div class="svc-inner">
+            <p class="svc-eyebrow">Website building</p>
+            <h2 class="svc-title">Ways to build your site</h2>
+            <p class="svc-sub">Hourly rates depend on the scope — you pay for the work, nothing more. Optional maintenance is available after launch.</p>
+            <p class="svc-note">Not sure what your project would total? Reach out for a free, fixed-price quote.</p>
+
+            <div class="tier-grid three">
+                <article class="price-card">
+                    <h3 class="price-name">New Website</h3>
+                    <p class="price-amount">$50&ndash;$100<span class="price-unit">/ hour</span></p>
+                    <ul class="check-list">
+                        <li>Built from the ground up</li>
+                        <li>Color palette &amp; brand direction</li>
+                        <li>Page &amp; feature planning</li>
+                    </ul>
+                    <a class="svc-cta" routerLink="/contact" [queryParams]="{ type: 'new-website' }">Let's get started</a>
+                </article>
+
+                <article class="price-card">
+                    <h3 class="price-name">CMS Migration</h3>
+                    <p class="price-amount">$40&ndash;$80<span class="price-unit">/ hour</span></p>
+                    <ul class="check-list">
+                        <li>Move off a visual CMS (Wix, Squarespace, etc.)</li>
+                        <li>Replicate your current look &amp; color palette</li>
+                        <li>Add new features &amp; aesthetic improvements</li>
+                    </ul>
+                    <a class="svc-cta" routerLink="/contact" [queryParams]="{ type: 'website-migration' }">Let's get started</a>
+                </article>
+
+                <article class="price-card">
+                    <h3 class="price-name">App Update</h3>
+                    <p class="price-amount">$25&ndash;$50<span class="price-unit">/ hour</span></p>
+                    <ul class="check-list">
+                        <li>Add features to an existing React or Angular app</li>
+                        <li>Enhance what you already have</li>
+                        <li>Lower rate for established codebases</li>
+                    </ul>
+                    <a class="svc-cta" routerLink="/contact" [queryParams]="{ type: 'update-website' }">Let's get started</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Maintenance ===== -->
+    <section id="maintenance-service" class="svc-section">
+        <div class="svc-inner">
+            <p class="svc-eyebrow">Maintenance</p>
+            <h2 class="svc-title">Keep your site running smoothly</h2>
+            <p class="svc-sub">Completely optional. Once your site is live, keep me on call for the tweaks and fixes that inevitably come up — no lock-in, cancel anytime.</p>
+
+            <div class="split-card">
+                <div class="split-pricing">
+                    <p class="price-amount big">$100<span class="price-unit">/ month</span></p>
+                    <p class="price-or">— or —</p>
+                    <p class="price-amount big">$1,000<span class="price-unit">/ year</span></p>
+                    <p class="price-tag save">Pay yearly and save $200</p>
+                </div>
+                <div class="split-body">
+                    <p class="feature-desc">Add it whenever you'd like to keep me available after launch — there's no obligation to sign up.</p>
+                    <p class="feature-desc"><strong>What's covered:</strong> bug fixes, minor tweaks, and small content changes to keep everything working as it should.</p>
+                    <p class="feature-desc note"><strong>Not covered:</strong> adding new pages or features — that falls under the <em>App Update</em> service above.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Database Hosting ===== -->
+    <section id="database-service" class="svc-section alt">
+        <div class="svc-inner">
+            <p class="svc-eyebrow">Database hosting</p>
+            <h2 class="svc-title">Storage that scales with you</h2>
+            <p class="svc-sub">We'll recommend the right tier for your needs — you're never pushed into more than you use.</p>
+            <p class="svc-note">Monthly hosting is billed by the database provider. We handle the setup and wire it into your site.</p>
+
+            <div class="tier-grid three">
+                <article class="price-card">
+                    <h3 class="price-name">Starter</h3>
+                    <p class="price-amount">$0<span class="price-unit">/ month</span></p>
+                    <ul class="spec-list">
+                        <li><span>RAM</span><span>256 MB</span></li>
+                        <li><span>Storage</span><span>512 MB</span></li>
+                        <li><span>Max connections</span><span>97</span></li>
+                        <li><span>Backups</span><span>None</span></li>
+                    </ul>
+                </article>
+
+                <article class="price-card">
+                    <h3 class="price-name">Standard</h3>
+                    <p class="price-amount">$7<span class="price-unit">/ month</span></p>
+                    <ul class="spec-list">
+                        <li><span>RAM</span><span>512 MB</span></li>
+                        <li><span>Storage</span><span>1 GB</span></li>
+                        <li><span>Max connections</span><span>97</span></li>
+                        <li><span>Backups</span><span>Daily, automatic</span></li>
+                    </ul>
+                </article>
+
+                <article class="price-card">
+                    <h3 class="price-name">Pro</h3>
+                    <p class="price-amount">$20<span class="price-unit">/ month</span></p>
+                    <ul class="spec-list">
+                        <li><span>RAM</span><span>1 GB</span></li>
+                        <li><span>Storage</span><span>10 GB</span></li>
+                        <li><span>Max connections</span><span>97</span></li>
+                        <li><span>Backups</span><span>Daily + manual</span></li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CMS Options ===== -->
+    <section id="content-management-service" class="svc-section">
+        <div class="svc-inner">
+            <p class="svc-eyebrow">Content management</p>
+            <h2 class="svc-title">Update your own content</h2>
+            <p class="svc-sub">Add a CMS so you can manage pages and content without touching code.</p>
+            <p class="svc-note">The setup fee is our one-time charge. Monthly plans are billed directly by Strapi or Builder.io.</p>
+
+            <div class="tier-grid two">
+                <article class="cms-card">
+                    <div class="cms-head">
+                        <h3 class="price-name">Strapi</h3>
+                        <p class="cms-setup">$100 setup</p>
+                    </div>
+                    <p class="feature-desc">Headless CMS that manages content through forms. Great for product pages or blogs.</p>
+                    <div class="cms-tiers">
+                        <div class="cms-tier">
+                            <p class="cms-tier-price">$0<span class="price-unit">/ mo</span></p>
+                            <ul class="check-list">
+                                <li>Role-based access control</li>
+                                <li>REST &amp; GraphQL API</li>
+                                <li>Powerful form-based content management</li>
+                                <li>Unlimited usage</li>
+                                <li>Community support</li>
+                            </ul>
+                        </div>
+                        <div class="cms-tier">
+                            <p class="cms-tier-price">$15<span class="price-unit">/ mo</span></p>
+                            <ul class="check-list">
+                                <li>Live previews</li>
+                                <li>Releases</li>
+                                <li>Content history</li>
+                                <li>Basic support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="cms-card">
+                    <div class="cms-head">
+                        <h3 class="price-name">Builder.io</h3>
+                        <p class="cms-setup">$200 setup</p>
+                    </div>
+                    <p class="feature-desc">Visual, drag-and-drop building. Great for updating the look of a page or adding new pages.</p>
+                    <div class="cms-tiers">
+                        <div class="cms-tier">
+                            <p class="cms-tier-price">$0<span class="price-unit">/ mo</span></p>
+                            <ul class="check-list">
+                                <li>10 users</li>
+                                <li>25 monthly AI credits (10 / day limit)</li>
+                                <li>1 space</li>
+                            </ul>
+                        </div>
+                        <div class="cms-tier">
+                            <p class="cms-tier-price">$24<span class="price-unit">/ mo</span></p>
+                            <ul class="check-list">
+                                <li>Up to 20 users</li>
+                                <li>100 monthly AI credits (+25/mo per 100 add'l)</li>
+                                <li>Pay-as-you-go for extra usage</li>
+                                <li>30-day activity history</li>
+                                <li>Standard support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Marketing ===== -->
+    <section id="marketing-service" class="svc-section alt">
+        <div class="svc-inner">
+            <p class="svc-eyebrow">Marketing</p>
+            <h2 class="svc-title">Reach your audience with Mailchimp</h2>
+            <p class="svc-note">The $50 is our one-time setup. Monthly tiers are billed by Mailchimp.</p>
+
+            <div class="wide-card">
+                <div class="wide-pricing">
+                    <p class="price-amount big">$50<span class="price-unit">setup</span></p>
+                    <p class="price-tag">Monthly tiers: $0 · $13 · $20 · $350</p>
+                    <p class="feature-desc note">Free up to 500 contacts / 1,000 sends per month.</p>
+                </div>
+                <div class="wide-body feature-grid two">
+                    <div>
+                        <h3 class="feature-title">Email marketing</h3>
+                        <ul class="check-list">
+                            <li>Segmented lists — customers, leads, subscribers</li>
+                            <li>Promote new products, sales, updates &amp; events</li>
+                            <li>Drag-and-drop email templates</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="feature-title">Automations &amp; ads</h3>
+                        <ul class="check-list">
+                            <li>Welcome emails &amp; abandoned-cart reminders</li>
+                            <li>Appointment follow-ups &amp; re-engagement</li>
+                            <li>Facebook &amp; Instagram ads from your audience</li>
+                            <li>Landing pages, signup forms &amp; dashboard analytics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Email + E-commerce ===== -->
+    <section id="email-service" class="svc-section">
+        <div class="svc-inner">
+            <div class="feature-grid two">
+                <article class="feature-card">
+                    <p class="svc-eyebrow">Email setup</p>
+                    <h3 class="feature-title">Professional email on your domain</h3>
+                    <p class="cms-setup inline">$20 setup</p>
+                    <div class="mini-tiers">
+                        <div class="mini-tier">
+                            <p class="cms-tier-price">$0<span class="price-unit">/ mo</span></p>
+                            <p class="feature-desc">Forward <em>contact&#64;yourdomain.com</em> to your Gmail, and reply with "send as."</p>
+                        </div>
+                        <div class="mini-tier">
+                            <p class="cms-tier-price">$6<span class="price-unit">/ mo</span></p>
+                            <p class="feature-desc">Full Google Workspace — Gmail, Calendar &amp; Docs, with an address tied to your domain (yourname&#64;yourdomain.com). Billed by Google.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="feature-card" id="ecommerce-service">
+                    <p class="svc-eyebrow">E-commerce</p>
+                    <h3 class="feature-title">Sell online with Stripe</h3>
+                    <p class="cms-setup inline">$100 setup</p>
+                    <p class="feature-desc">We set up secure checkouts with Stripe handling payment processing.</p>
+                    <ul class="check-list">
+                        <li>Stripe-powered checkout &amp; card processing</li>
+                        <li>Processing fee: 2.9% + $0.30 per successful card charge (charged by Stripe)</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Logo callout ===== -->
+    <section class="svc-section alt">
+        <div class="svc-inner">
+            <div class="callout">
+                <h3 class="feature-title">Need a logo or brand identity?</h3>
+                <p class="feature-desc">We keep our focus on building fast, well-structured sites. For logo and graphic design, we're happy to point you toward trusted graphic designers who can craft the perfect mark for your brand.</p>
+            </div>
+        </div>
+    </section>
 </main>

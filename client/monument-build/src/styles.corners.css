@@ -1,0 +1,45 @@
+/* ===== Per-theme corner radius (square vs rounded personality) =====
+   Kept in its own global stylesheet (wired via angular.json) so it isn't lost to
+   editor re-saves of styles.css. One radius scale per theme, applied to the main
+   rectangular surfaces. Computer & Futuristic read sharp; Cartoon fully rounded;
+   Professional subtle; 1920s crisp with a small radius. Circles (50%) and the
+   slider pill are intentionally left alone. */
+
+:root,
+[data-theme="cartoon"]      { --radius-lg: 22px; --radius: 14px; --radius-sm: 9px; }
+[data-theme="futuristic"]   { --radius-lg: 4px;  --radius: 2px;  --radius-sm: 1px; }
+[data-theme="professional"] { --radius-lg: 12px; --radius: 8px;  --radius-sm: 6px; }
+[data-theme="computer"]     { --radius-lg: 2px;  --radius: 0px;  --radius-sm: 0px; }
+[data-theme="1920s"]        { --radius-lg: 5px;  --radius: 3px;  --radius-sm: 2px; }
+
+/* Apply the per-theme radius to the main surfaces. Global + !important so it wins
+   over each component's own scoped border-radius; unknown class names are no-ops. */
+.service-card,
+#gallery-container,
+.project-card,
+.project-thumb,
+.gallery-cta-card,
+.theme-preview,
+.contact-form,
+.wide-card,
+.svc-card,
+.price-card,
+.cms-card,
+.feature-card,
+.lb-img {
+    border-radius: var(--radius-lg, 12px) !important;
+}
+.form-button,
+.gallery-cta,
+.theme-btn,
+.svc-cta,
+.price-cta {
+    border-radius: var(--radius, 8px) !important;
+}
+.form-input,
+.form-textarea,
+.gallery-icon,
+.project-img,
+.lb-thumb {
+    border-radius: var(--radius-sm, 6px) !important;
+}

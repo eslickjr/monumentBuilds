@@ -1,1 +1,111 @@
-<p>gallery works!</p>
+<main id="gallery-page">
+    <!-- ===== Hero (geometric pattern) ===== -->
+    <section id="gallery-hero">
+        <div class="gallery-hero-inner">
+            <p class="gallery-eyebrow">Portfolio</p>
+            <h1 id="gallery-header">Our Work</h1>
+            <p id="gallery-message">One studio, endless directions. Explore the range — then picture your own site in the mix.</p>
+        </div>
+    </section>
+
+    <!-- ===== Theme versatility showcase ===== -->
+    <section class="gallery-section">
+        <div class="gallery-inner">
+            <p class="gallery-section-eyebrow">Versatility</p>
+            <h2 class="gallery-section-title">One build, five personalities</h2>
+            <p class="gallery-section-sub">This very site ships in five distinct styles — slide the control at the bottom of any page to watch it transform. Here's a peek at each.</p>
+
+            <div class="theme-grid">
+                @for (t of themes; track t.name) {
+                    <figure class="theme-tile" (click)="setTheme(t.name)" (keydown.enter)="setTheme(t.name)" tabindex="0" role="button" [attr.aria-label]="'Apply the ' + t.name + ' theme'">
+                        <div class="theme-preview" [style.background]="t.bg" [style.border-color]="t.accent">
+                            <div class="theme-bar" [style.background]="t.surface">
+                                <span class="theme-dot" [style.background]="t.accent"></span>
+                                <span class="theme-dot" [style.background]="t.primary"></span>
+                                <span class="theme-dot" [style.background]="t.primary"></span>
+                            </div>
+                            <div class="theme-body">
+                                <p class="theme-sample" [style.color]="t.primary" [style.font-family]="t.font">Aa</p>
+                                <span class="theme-btn" [style.background]="t.accent" [style.color]="t.accentText" [style.font-family]="t.font">Build</span>
+                            </div>
+                        </div>
+                        <figcaption class="theme-caption">
+                            <span class="theme-name">{{ t.name }}</span>
+                            <span class="theme-tag">{{ t.tag }}</span>
+                            <span class="theme-apply">Apply theme &rarr;</span>
+                        </figcaption>
+                    </figure>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Project grid ===== -->
+    <section id="projects" class="gallery-section alt">
+        <div class="gallery-inner">
+            <p class="gallery-section-eyebrow">Selected work</p>
+            <h2 class="gallery-section-title">Recent projects</h2>
+            <p class="gallery-section-sub">A few sample concepts to show the kind of sites we build. Real client work will live here as it launches.</p>
+
+            <div class="project-grid">
+                @for (p of projects; track p.title) {
+                    <article class="project-card" [class.clickable]="p.images.length" (click)="openLightbox(p, $event)" (keydown.enter)="openLightbox(p, $event)" [attr.tabindex]="p.images.length ? 0 : null">
+                        <div class="project-thumb" [style.background]="gradient(p)">
+                            @if (p.images.length) {
+                                <img class="project-img" [src]="p.images[0]" [alt]="p.title + ' preview'" loading="lazy">
+                            } @else {
+                                <span class="project-mono">{{ initials(p.title) }}</span>
+                            }
+                            @if (p.sample) {
+                                <span class="project-sample">Sample</span>
+                            }
+                            @if (p.images.length > 1) {
+                                <span class="project-count">{{ p.images.length }} shots</span>
+                            }
+                            <span class="project-view">View images</span>
+                        </div>
+                        <div class="project-info">
+                            <span class="project-cat">{{ p.category }}</span>
+                            <h3 class="project-title">{{ p.title }}</h3>
+                            <p class="project-blurb">{{ p.blurb }}</p>
+                        </div>
+                    </article>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="gallery-section">
+        <div class="gallery-inner">
+            <div class="gallery-cta-card">
+                <h2 class="gallery-section-title">Like what you see?</h2>
+                <p class="gallery-section-sub">Let's build something that's unmistakably yours.</p>
+                <a class="gallery-cta" routerLink="/contact">Start a project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Lightbox ===== -->
+    @if (lightboxProject) {
+        <div class="lightbox" (click)="closeLightbox()">
+            <button class="lb-close" (click)="closeLightbox()" aria-label="Close">&times;</button>
+            <button class="lb-nav lb-prev" (click)="$event.stopPropagation(); prev()" aria-label="Previous image">&lsaquo;</button>
+            <div class="lb-stage" (click)="$event.stopPropagation()">
+                <img class="lb-img" [src]="lightboxProject.images[lightboxIndex]" [alt]="lightboxProject.title + ' screenshot'">
+                <div class="lb-caption">
+                    <span class="lb-title">{{ lightboxProject.title }}</span>
+                    <span class="lb-count">{{ lightboxIndex + 1 }} / {{ lightboxProject.images.length }}</span>
+                </div>
+                <div class="lb-thumbs">
+                    @for (img of lightboxProject.images; track img; let i = $index) {
+                        <button class="lb-thumb" [class.active]="i === lightboxIndex" (click)="goTo(i)" [attr.aria-label]="'Go to image ' + (i + 1)">
+                            <img [src]="img" alt="" loading="lazy">
+                        </button>
+                    }
+                </div>
+            </div>
+            <button class="lb-nav lb-next" (click)="$event.stopPropagation(); next()" aria-label="Next image">&rsaquo;</button>
+        </div>
+    }
+</main>

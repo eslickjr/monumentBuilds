@@ -1,0 +1,466 @@
+/* ===================== Services page ===================== *
+ * Themed entirely via the site's CSS variables so it restyles live with the
+ * style slider (headings = --primary-color, body = --secondary-color-4,
+ * accents/prices = --secondary-color, cards = the surface gradient). */
+
+#services-page {
+    display: block;
+    background-color: var(--background-color);
+}
+
+/* ---------- Hero (split: text left, per-theme visual right) ----------
+   Deliberately different from the home page's centered skyline hero. */
+#services-introduction {
+    background-color: var(--background-color-2);
+    padding: 70px 20px;
+    border-bottom: 1px solid var(--primary-color-4);
+}
+
+.svc-hero-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 44px;
+    align-items: center;
+}
+
+.svc-hero-text {
+    text-align: left;
+}
+
+.svc-hero-eyebrow {
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: var(--font-family-3);
+    color: var(--secondary-color);
+}
+
+#services-header {
+    margin: 0;
+    font-family: var(--font-family-2);
+    font-weight: 700;
+    font-size: 3em;
+    line-height: 1.05;
+    color: var(--primary-color);
+}
+/* Accent rule under the title. */
+#services-header::after {
+    content: "";
+    display: block;
+    width: 64px;
+    height: 4px;
+    margin-top: 18px;
+    border-radius: 2px;
+    background-color: var(--secondary-color);
+}
+
+#services-message {
+    margin: 20px 0 26px;
+    max-width: 520px;
+    font-family: var(--font-family-3);
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: var(--secondary-color-4);
+}
+
+.svc-cta.hero-cta {
+    display: inline-block;
+    margin-top: 0;
+    width: auto;
+    padding: 12px 28px;
+}
+
+/* Visual panel: themed gradient placeholder now; per-theme photo layers on top
+   once the images exist (missing files just fall back to the gradient — no
+   broken icon). Set --svc-hero per theme to a worker image. */
+.svc-hero-visual {
+    min-height: 340px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+    background-color: var(--surface-color-4);
+    background-image: var(--svc-hero, none),
+        linear-gradient(135deg, var(--surface-color-3), var(--surface-color-5));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid var(--primary-color-4);
+}
+:host-context([data-theme="cartoon"]) .svc-hero-visual { --svc-hero: url("/cartoon-workers.jpg"); }
+:host-context([data-theme="futuristic"]) .svc-hero-visual { --svc-hero: url("/futuristic-workers.jpg"); }
+:host-context([data-theme="professional"]) .svc-hero-visual { --svc-hero: url("/professional-workers.jpg"); border-color: var(--primary-color); }
+:host-context([data-theme="computer"]) .svc-hero-visual { --svc-hero: url("/computer-workers.jpg"); }
+:host-context([data-theme="1920s"]) .svc-hero-visual { --svc-hero: url("/1920s-workers.jpg"); }
+
+/* ---------- Section scaffolding ---------- */
+.svc-section {
+    padding: 64px 20px;
+    background-color: var(--background-color);
+}
+.svc-section.alt {
+    background-color: var(--background-color-2);
+}
+
+.svc-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.svc-eyebrow {
+    margin: 0 0 8px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: var(--font-family-3);
+    color: var(--secondary-color);
+}
+
+.svc-title {
+    margin: 0 0 10px;
+    text-align: center;
+    font-family: var(--font-family-2);
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.svc-sub {
+    margin: 0 auto 36px;
+    max-width: 700px;
+    text-align: center;
+    font-family: var(--font-family-3);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--secondary-color-4);
+}
+
+/* Small clarifying line (e.g. "monthly fees billed by the provider"). */
+.svc-note {
+    margin: -20px auto 30px;
+    max-width: 640px;
+    text-align: center;
+    font-family: var(--font-family-3);
+    font-size: 0.85rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--secondary-color-4);
+    opacity: 0.85;
+}
+
+/* When the note sits directly under a section title (e.g. the Marketing section)
+   the -20px pull-up (meant for tucking it under a pricing block) crowds the
+   heading — give it a comfortable gap instead. */
+.svc-title + .svc-note {
+    margin-top: 8px;
+}
+
+/* ---------- Cards & grids ---------- */
+.feature-grid,
+.tier-grid {
+    display: grid;
+    gap: 24px;
+}
+.feature-grid.three,
+.tier-grid.three {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+.feature-grid.two,
+.tier-grid.two {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.feature-card,
+.price-card,
+.cms-card {
+    background: linear-gradient(to bottom, var(--surface-color-3), var(--surface-color-4));
+    border: 1px solid var(--primary-color-4);
+    border-radius: 12px;
+    padding: 26px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+.feature-title {
+    margin: 0 0 10px;
+    font-family: var(--font-family-2);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.feature-desc {
+    margin: 0 0 12px;
+    font-family: var(--font-family-3);
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--secondary-color-4);
+    overflow-wrap: break-word;
+}
+.feature-desc.note {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+.feature-desc strong { color: var(--primary-color); }
+
+/* ---------- Check lists ---------- */
+.check-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.check-list li {
+    position: relative;
+    padding-left: 26px;
+    margin: 8px 0;
+    font-family: var(--font-family-3);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: var(--secondary-color-4);
+}
+.check-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.25em;
+    width: 14px;
+    height: 8px;
+    border-left: 2.5px solid var(--secondary-color);
+    border-bottom: 2.5px solid var(--secondary-color);
+    transform: rotate(-45deg);
+}
+
+/* ---------- Price cards ---------- */
+.price-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.price-card.featured {
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.22);
+}
+.price-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 3px 12px;
+    border-radius: 999px;
+    background-color: var(--secondary-color);
+    color: var(--surface-color);
+    font-family: var(--font-family-3);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.price-name {
+    margin: 0 0 6px;
+    font-family: var(--font-family-2);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.price-amount {
+    margin: 0 0 4px;
+    font-family: var(--font-family-2);
+    font-weight: 700;
+    font-size: 1.9rem;
+    color: var(--secondary-color);
+    line-height: 1.1;
+}
+.price-amount.big { font-size: 2.2rem; }
+.price-unit {
+    font-family: var(--font-family-3);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--secondary-color-4);
+    margin-left: 4px;
+}
+.price-or {
+    margin: 6px 0;
+    font-family: var(--font-family-3);
+    font-size: 0.85rem;
+    color: var(--secondary-color-4);
+}
+.price-tag {
+    margin: 4px 0 16px;
+    font-family: var(--font-family-3);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--secondary-color-4);
+}
+.price-tag.save { color: var(--secondary-color); }
+
+/* ---------- Spec list (database) ---------- */
+.spec-list {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+}
+.spec-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--primary-color-4);
+    font-family: var(--font-family-3);
+    font-size: 0.95rem;
+}
+.spec-list li:last-child { border-bottom: none; }
+.spec-list li span:first-child { color: var(--secondary-color-4); }
+.spec-list li span:last-child { color: var(--primary-color); font-weight: 600; }
+
+/* ---------- Maintenance split card ---------- */
+.split-card {
+    display: grid;
+    grid-template-columns: minmax(220px, 1fr) 2fr;
+    gap: 28px;
+    align-items: center;
+    background: linear-gradient(to bottom, var(--surface-color-3), var(--surface-color-4));
+    border: 1px solid var(--primary-color-4);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+.split-pricing {
+    text-align: center;
+    border-right: 1px solid var(--primary-color-4);
+    padding-right: 28px;
+}
+
+/* ---------- CMS cards ---------- */
+.cms-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.cms-setup {
+    margin: 0;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background-color: var(--secondary-color);
+    color: var(--surface-color);
+    font-family: var(--font-family-3);
+    font-size: 0.8rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+.cms-setup.inline {
+    display: inline-block;
+    margin-bottom: 12px;
+}
+.cms-tiers,
+.mini-tiers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 16px;
+}
+.cms-tier,
+.mini-tier {
+    min-width: 0;
+    background-color: var(--surface-color);
+    border: 1px solid var(--primary-color-4);
+    border-radius: 10px;
+    padding: 16px;
+}
+.cms-tier-price {
+    margin: 0 0 10px;
+    font-family: var(--font-family-2);
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--secondary-color);
+}
+
+/* ---------- Wide (marketing) card ---------- */
+.wide-card {
+    display: grid;
+    grid-template-columns: minmax(240px, 1fr) 2fr;
+    gap: 28px;
+    background: linear-gradient(to bottom, var(--surface-color-3), var(--surface-color-4));
+    border: 1px solid var(--primary-color-4);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+.wide-pricing {
+    border-right: 1px solid var(--primary-color-4);
+    padding-right: 28px;
+}
+.wide-body { gap: 28px; }
+
+/* ---------- Callout ---------- */
+.callout {
+    text-align: center;
+    background: linear-gradient(to bottom, var(--surface-color-3), var(--surface-color-4));
+    border: 1px dashed var(--secondary-color);
+    border-radius: 12px;
+    padding: 34px 26px;
+    max-width: 760px;
+    margin: 0 auto;
+}
+.callout .feature-desc { margin: 0 auto; max-width: 560px; }
+
+/* ---------- CTA button ---------- */
+.svc-cta {
+    display: block;
+    margin-top: auto;
+    text-align: center;
+    padding: 12px 18px;
+    border-radius: 8px;
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    font-family: var(--font-family-3);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.1s ease;
+}
+.svc-cta:hover {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+}
+.svc-cta:active {
+    transform: translateY(1px);
+}
+/* Space the feature list from the price, and guarantee a gap above the
+   (bottom-aligned) button even on the tallest card. */
+.price-card .check-list {
+    margin-top: 14px;
+    margin-bottom: 18px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+    #services-header { font-size: 2.2em; }
+    .svc-hero-inner { grid-template-columns: 1fr; gap: 28px; }
+    .svc-hero-visual { min-height: 200px; order: 2; }
+    .split-card,
+    .wide-card {
+        grid-template-columns: 1fr;
+    }
+    .split-pricing,
+    .wide-pricing {
+        border-right: none;
+        border-bottom: 1px solid var(--primary-color-4);
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+    .cms-tiers,
+    .mini-tiers,
+    .feature-grid.two {
+        grid-template-columns: 1fr;
+    }
+}
