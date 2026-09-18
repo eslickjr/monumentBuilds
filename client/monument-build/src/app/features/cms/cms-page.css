@@ -43,7 +43,6 @@
     color: var(--secondary-color-4);
 }
 
-/* Loading / empty states */
 .cms-demo-status {
     max-width: 640px;
     margin: 48px auto;

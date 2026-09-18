@@ -43,13 +43,13 @@ export const routes: Routes = [
         },
     },
     {
-        // Lazy-loaded so the Builder.io SDK only ships in this route's chunk.
+        // Lazy-loaded Storyblok-powered visual CMS demo page.
         path: 'cms-demo',
-        loadComponent: () => import('./features/cms-demo/cms-demo').then((m) => m.CmsDemo),
+        loadComponent: () => import('./features/cms/cms-page').then((m) => m.CmsPage),
         data: {
             title: 'CMS Demo',
             description:
-                'A live demo of visual, no-code content editing powered by Builder.io — see how content on a Monument Builds site can be managed without touching code.',
+                'A live demo of visual content editing powered by Storyblok — see how content on a Monument Builds site can be managed without touching code.',
         },
     },
 ];
