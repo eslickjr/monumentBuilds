@@ -89,11 +89,30 @@
     background-repeat: no-repeat;
     border: 2px solid var(--primary-color-4);
 }
-:host-context([data-theme="cartoon"]) .svc-hero-visual { --svc-hero: url("/cartoon-workers.jpg"); }
-:host-context([data-theme="futuristic"]) .svc-hero-visual { --svc-hero: url("/futuristic-workers.jpg"); }
-:host-context([data-theme="professional"]) .svc-hero-visual { --svc-hero: url("/professional-workers.jpg"); border-color: var(--primary-color); }
-:host-context([data-theme="computer"]) .svc-hero-visual { --svc-hero: url("/computer-workers.jpg"); }
-:host-context([data-theme="1920s"]) .svc-hero-visual { --svc-hero: url("/1920s-workers.jpg"); }
+/* AVIF (with WebP + JPG fallback via image-set). The plain url() line comes
+   first as a fallback for browsers that don't support image-set(); browsers
+   that do override it and pick the smallest format they can decode. */
+:host-context([data-theme="cartoon"]) .svc-hero-visual {
+    --svc-hero: url("/cartoon-workers.jpg");
+    --svc-hero: image-set(url("/cartoon-workers.avif") type("image/avif"), url("/cartoon-workers.webp") type("image/webp"), url("/cartoon-workers.jpg") type("image/jpeg"));
+}
+:host-context([data-theme="futuristic"]) .svc-hero-visual {
+    --svc-hero: url("/futuristic-workers.jpg");
+    --svc-hero: image-set(url("/futuristic-workers.avif") type("image/avif"), url("/futuristic-workers.webp") type("image/webp"), url("/futuristic-workers.jpg") type("image/jpeg"));
+}
+:host-context([data-theme="professional"]) .svc-hero-visual {
+    --svc-hero: url("/professional-workers.jpg");
+    --svc-hero: image-set(url("/professional-workers.avif") type("image/avif"), url("/professional-workers.webp") type("image/webp"), url("/professional-workers.jpg") type("image/jpeg"));
+    border-color: var(--primary-color);
+}
+:host-context([data-theme="computer"]) .svc-hero-visual {
+    --svc-hero: url("/computer-workers.jpg");
+    --svc-hero: image-set(url("/computer-workers.avif") type("image/avif"), url("/computer-workers.webp") type("image/webp"), url("/computer-workers.jpg") type("image/jpeg"));
+}
+:host-context([data-theme="1920s"]) .svc-hero-visual {
+    --svc-hero: url("/1920s-workers.jpg");
+    --svc-hero: image-set(url("/1920s-workers.avif") type("image/avif"), url("/1920s-workers.webp") type("image/webp"), url("/1920s-workers.jpg") type("image/jpeg"));
+}
 
 /* ---------- Section scaffolding ---------- */
 .svc-section {

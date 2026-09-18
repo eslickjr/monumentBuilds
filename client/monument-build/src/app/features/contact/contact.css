@@ -340,6 +340,11 @@
 
 /* Confirmation panel shown in place of the form after a successful submit. */
 .form-success {
+    /* Positioned (like .contact-form) so it stacks above the absolute
+       .contact-image-container backdrop — otherwise the professional theme's
+       opaque black backdrop paints over this static panel and hides it. */
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;

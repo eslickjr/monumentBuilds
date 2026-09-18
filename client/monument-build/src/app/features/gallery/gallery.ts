@@ -72,6 +72,15 @@ export class Gallery implements OnDestroy {
     return `linear-gradient(135deg, ${p.from}, ${p.to})`;
   }
 
+  /** Derive the AVIF/WebP variant path for a screenshot so <picture> can offer
+   *  the smaller formats with the original PNG/JPG as the final fallback. */
+  avif(src: string): string {
+    return src.replace(/\.(png|jpe?g)$/i, '.avif');
+  }
+  webp(src: string): string {
+    return src.replace(/\.(png|jpe?g)$/i, '.webp');
+  }
+
   initials(title: string): string {
     return title
       .replace(/[^a-zA-Z0-9 ]/g, '')

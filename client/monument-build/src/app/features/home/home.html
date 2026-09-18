@@ -1,11 +1,31 @@
 <main id="home">
     <section id="introduction">
         <div id="welcome-image-container">
-            <img class="welcome-image welcome-image-professional" src="/professional-skyline.jpg" alt="Professional skyline background">
-            <img class="welcome-image welcome-image-cartoon" src="/cartoon-city-skyline.png" alt="City skyline background">
-            <img class="welcome-image welcome-image-futuristic" src="/future-city-skyline.png" alt="Futuristic city skyline background">
-            <img class="welcome-image welcome-image-computer" src="/computer-city-skyline-2.png" alt="Circuit-board city skyline background">
-            <img class="welcome-image welcome-image-1920s" src="/1920-city-skyline.png" alt="1920s city skyline background">
+            <picture>
+                <source srcset="/professional-skyline.avif" type="image/avif">
+                <source srcset="/professional-skyline.webp" type="image/webp">
+                <img class="welcome-image welcome-image-professional" src="/professional-skyline.jpg" alt="Professional skyline background">
+            </picture>
+            <picture>
+                <source srcset="/cartoon-city-skyline.avif" type="image/avif">
+                <source srcset="/cartoon-city-skyline.webp" type="image/webp">
+                <img class="welcome-image welcome-image-cartoon" src="/cartoon-city-skyline.png" alt="City skyline background">
+            </picture>
+            <picture>
+                <source srcset="/future-city-skyline.avif" type="image/avif">
+                <source srcset="/future-city-skyline.webp" type="image/webp">
+                <img class="welcome-image welcome-image-futuristic" src="/future-city-skyline.png" alt="Futuristic city skyline background">
+            </picture>
+            <picture>
+                <source srcset="/computer-city-skyline-2.avif" type="image/avif">
+                <source srcset="/computer-city-skyline-2.webp" type="image/webp">
+                <img class="welcome-image welcome-image-computer" src="/computer-city-skyline-2.png" alt="Circuit-board city skyline background">
+            </picture>
+            <picture>
+                <source srcset="/1920-city-skyline.avif" type="image/avif">
+                <source srcset="/1920-city-skyline.webp" type="image/webp">
+                <img class="welcome-image welcome-image-1920s" src="/1920-city-skyline.png" alt="1920s city skyline background">
+            </picture>
         </div>
         <h1 id="welcome-header">Monument Builds</h1>
         <p id="welcome-message">Creating seamless, responsive sites that grow with your business. Every detail is crafted to help you succeed online.</p>

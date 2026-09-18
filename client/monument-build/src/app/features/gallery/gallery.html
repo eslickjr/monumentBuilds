@@ -52,7 +52,11 @@
                     <article class="project-card" [class.clickable]="p.images.length" (click)="openLightbox(p, $event)" (keydown.enter)="openLightbox(p, $event)" [attr.tabindex]="p.images.length ? 0 : null">
                         <div class="project-thumb" [style.background]="gradient(p)">
                             @if (p.images.length) {
-                                <img class="project-img" [src]="p.images[0]" [alt]="p.title + ' preview'" loading="lazy">
+                                <picture>
+                                    <source [srcset]="avif(p.images[0])" type="image/avif">
+                                    <source [srcset]="webp(p.images[0])" type="image/webp">
+                                    <img class="project-img" [src]="p.images[0]" [alt]="p.title + ' preview'" loading="lazy">
+                                </picture>
                             } @else {
                                 <span class="project-mono">{{ initials(p.title) }}</span>
                             }
@@ -98,7 +102,11 @@
             <button class="lb-close" (click)="closeLightbox()" aria-label="Close">&times;</button>
             <button class="lb-nav lb-prev" (click)="$event.stopPropagation(); prev()" aria-label="Previous image">&lsaquo;</button>
             <div class="lb-stage" (click)="$event.stopPropagation()">
-                <img class="lb-img" [src]="lightboxProject.images[lightboxIndex]" [alt]="lightboxProject.title + ' screenshot'">
+                <picture>
+                    <source [srcset]="avif(lightboxProject.images[lightboxIndex])" type="image/avif">
+                    <source [srcset]="webp(lightboxProject.images[lightboxIndex])" type="image/webp">
+                    <img class="lb-img" [src]="lightboxProject.images[lightboxIndex]" [alt]="lightboxProject.title + ' screenshot'">
+                </picture>
                 <div class="lb-caption">
                     <span class="lb-title">{{ lightboxProject.title }}</span>
                     <span class="lb-count">{{ lightboxIndex + 1 }} / {{ lightboxProject.images.length }}</span>
@@ -106,7 +114,11 @@
                 <div class="lb-thumbs">
                     @for (img of lightboxProject.images; track img; let i = $index) {
                         <button class="lb-thumb" [class.active]="i === lightboxIndex" (click)="goTo(i)" [attr.aria-label]="'Go to image ' + (i + 1)">
-                            <img [src]="img" alt="" loading="lazy">
+                            <picture>
+                                <source [srcset]="avif(img)" type="image/avif">
+                                <source [srcset]="webp(img)" type="image/webp">
+                                <img [src]="img" alt="" loading="lazy">
+                            </picture>
                         </button>
                     }
                 </div>

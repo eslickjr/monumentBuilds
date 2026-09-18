@@ -42,4 +42,14 @@ export const routes: Routes = [
                 'Start your website project with Monument Builds. Get in touch for a fast, modern, responsive site that grows with your business.',
         },
     },
+    {
+        // Lazy-loaded so the Builder.io SDK only ships in this route's chunk.
+        path: 'cms-demo',
+        loadComponent: () => import('./features/cms-demo/cms-demo').then((m) => m.CmsDemo),
+        data: {
+            title: 'CMS Demo',
+            description:
+                'A live demo of visual, no-code content editing powered by Builder.io — see how content on a Monument Builds site can be managed without touching code.',
+        },
+    },
 ];

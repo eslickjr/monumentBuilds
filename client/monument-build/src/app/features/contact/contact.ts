@@ -38,6 +38,17 @@ export class Contact {
     this.businessNameContent = this.businessName.length > 0;
   }
 
+  /** After the tall form is replaced by the short confirmation panel, the page
+   *  collapses and the panel can land off-screen (below where the Submit button
+   *  was) — so it looks like nothing happened. Bring it into view once Angular
+   *  has rendered it. */
+  private scrollToConfirmation(): void {
+    setTimeout(() => {
+      const panel = document.querySelector('.form-success') as HTMLElement | null;
+      panel?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 80);
+  }
+
   /** Submit the form to Netlify Forms. Netlify captures the POST and emails the
    *  submission to whichever address is configured in the site's form
    *  notifications (set to monumentbuilds@gmail.com in the Netlify dashboard).
@@ -52,6 +63,7 @@ export class Contact {
     // Honeypot tripped — silently pretend success, drop the submission.
     if (this.botField) {
       this.submitted = true;
+      this.scrollToConfirmation();
       return;
     }
 
@@ -75,6 +87,7 @@ export class Contact {
       });
       if (!res.ok) throw new Error(`Submit failed with status ${res.status}`);
       this.submitted = true;
+      this.scrollToConfirmation();
     } catch {
       // Most common in local `ng serve` (no Netlify backend to accept the POST).
       this.submitError = true;

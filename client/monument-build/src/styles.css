@@ -3,6 +3,13 @@
    The whole site is driven by these CSS variables, so a theme is just a swap of values.
    Cartoon is the default (also applied when no data-theme is present). */
 
+/* <picture> is only a wrapper for AVIF/WebP <source> fallbacks — it should not
+   create its own box, so the inner <img> keeps behaving exactly as before
+   (existing sizing/positioning/theme rules target the img directly). */
+picture {
+    display: contents;
+}
+
 /* ---------- CARTOON (current look — default) ---------- */
 :root,
 [data-theme="cartoon"] {
