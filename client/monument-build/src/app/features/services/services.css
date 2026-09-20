@@ -431,6 +431,23 @@
 }
 .callout .feature-desc { margin: 0 auto; max-width: 560px; }
 
+/* Content Canvas (our in-house CMS) callout + "In Development" badge. */
+.cms-canvas .check-list { display: inline-block; text-align: left; margin: 16px auto; }
+.cms-canvas .cms-setup.inline { margin-top: 10px; font-size: 1.15rem; }
+.wip-badge {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background-color: var(--secondary-color);
+    color: var(--surface-color);
+    font-family: var(--font-family-3);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
 /* ---------- CTA button ---------- */
 .svc-cta {
     display: block;
