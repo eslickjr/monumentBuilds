@@ -20,6 +20,19 @@ export class StyleSlider {
   /** How far above the footer's top the slider rests (centers it in the ~200px gap). */
   private readonly GAP_MARGIN = 30;
 
+  /** First-visit onboarding: spotlight the slider in the center of a dimmed
+   *  screen with an explanation, then fly it down to its real spot on dismiss. */
+  readonly onboarding = signal(false);
+  /** Elevated z-index while onboarding + during the fly-to-place animation. */
+  readonly elevated = signal(false);
+  /** Gates the transform transition so the entrance is instant and only the
+   *  exit (fly-to-place) animates. */
+  readonly animate = signal(false);
+  /** Inline transform on the slider: centered+scaled during onboarding, then
+   *  back to the normal centered-at-bottom transform. */
+  readonly onboardTransform = signal('translateX(-50%)');
+  private readonly SEEN_KEY = 'mb_slider_seen';
+
   constructor() {
     // Browser-only: track scroll so the slider rides above the footer at the bottom.
     afterNextRender(() => {
@@ -46,10 +59,70 @@ export class StyleSlider {
       }
       setTimeout(() => this.updateBottom(), 300);
       setTimeout(() => this.updateBottom(), 1200);
+
+      this.maybeStartOnboarding(0);
     });
   }
 
+  /** On a first visit, center the slider over a dark backdrop with a how-to. */
+  private maybeStartOnboarding(attempt: number): void {
+    let seen = false;
+    try {
+      seen = localStorage.getItem(this.SEEN_KEY) === '1';
+    } catch {
+      seen = false;
+    }
+    if (seen) return;
+
+    const el = document.getElementById('style-slider');
+    if (!el) {
+      if (attempt < 10) requestAnimationFrame(() => this.maybeStartOnboarding(attempt + 1));
+      return;
+    }
+
+    // Lift the slider so its center lands at the viewport's vertical center.
+    // (Scale is about the element center, so translate first then scale keeps it centered.)
+    const h = el.offsetHeight || 150;
+    const dy = -(window.innerHeight / 2) + this.NORMAL_BOTTOM + h / 2;
+
+    this.onboardTransform.set(`translateX(-50%) translateY(${dy}px) scale(1.12)`);
+    this.elevated.set(true);
+    this.onboarding.set(true);
+    try {
+      document.body.style.overflow = 'hidden'; // freeze scroll behind the spotlight
+    } catch {}
+
+    // Enable the transition only after the centered position is painted, so the
+    // spotlight appears instantly and only the fly-to-place (exit) animates.
+    const reduce =
+      typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      requestAnimationFrame(() => requestAnimationFrame(() => this.animate.set(true)));
+    }
+  }
+
+  /** Dismiss the spotlight: fade the backdrop/text and fly the slider to its
+   *  real resting spot at the bottom of the page. */
+  dismissOnboarding(): void {
+    if (!this.onboarding()) return;
+    try {
+      localStorage.setItem(this.SEEN_KEY, '1');
+    } catch {}
+    try {
+      document.body.style.overflow = '';
+    } catch {}
+
+    this.onboarding.set(false); // fades backdrop + text + button
+    this.onboardTransform.set('translateX(-50%)'); // animates back to normal position
+    // Recompute the resting position now that scrolling is restored, then drop
+    // the elevated z-index once the motion has finished.
+    setTimeout(() => this.updateBottom(), 50);
+    setTimeout(() => this.elevated.set(false), 650);
+  }
+
   private updateBottom(): void {
+    // Don't fight the onboarding transform while the spotlight is active.
+    if (this.onboarding()) return;
     const footer = document.getElementById('footer');
     if (!footer) {
       this.bottom.set(this.NORMAL_BOTTOM);

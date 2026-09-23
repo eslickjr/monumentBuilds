@@ -1,5 +1,26 @@
+<!-- First-visit spotlight: dark backdrop + centered how-to. Clicking the
+     backdrop dismisses it, just like the button. -->
+<div class="ss-onboard-backdrop" [class.show]="onboarding()" (click)="dismissOnboarding()"></div>
+
+<div class="ss-onboard-text" [class.show]="onboarding()" role="dialog" aria-label="How to use the style slider">
+  <h2 class="ss-onboard-title">One site, five styles</h2>
+  <p class="ss-onboard-desc">Drag the slider to watch this whole site restyle in real time. It lives at the bottom of every page — change the look whenever you like.</p>
+</div>
+
+<button class="ss-onboard-btn" [class.show]="onboarding()" (click)="dismissOnboarding()">
+  Got it — let me try
+</button>
+
 @if (!reveal.overlayOpen()) {
-<div id="style-slider" role="group" aria-label="Site style" [style.bottom.px]="bottom()">
+<div
+  id="style-slider"
+  role="group"
+  aria-label="Site style"
+  [class.ss-animate]="animate()"
+  [class.ss-onboarding]="elevated()"
+  [style.bottom.px]="bottom()"
+  [style.transform]="onboardTransform()"
+>
   <!--
   <div class="ss-row1">
     <span class="ss-kicker">Site style</span>
